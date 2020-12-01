@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class app {
 
     public static void main(String[] args) {
-        String fileName = "C:\\Users\\fpodl\\git-folders\\advent-of-code-2020\\adventofcode2020\\src\\main\\resources\\input.txt";
+        String fileName = "src/main/resources/input.txt";
 
         System.out.println("Day 1 part 1");
         System.out.println(String.valueOf(dayOnePartOne(fileName)));
