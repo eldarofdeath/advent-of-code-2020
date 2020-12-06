@@ -1,3 +1,5 @@
+import util.readFile;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,14 +20,7 @@ abstract class day01 {
     }
 
     private static int dayOnePartOne(String fileName) {
-        List<String> list = new ArrayList<>();
-
-        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            list = stream.collect(Collectors.toList());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        List<String> list = readFile.readFileLineByLine(fileName);
         for (String line : list) {
             for (String line2 : list) {
                 if (Integer.parseInt(line) + Integer.parseInt(line2) == 2020) {

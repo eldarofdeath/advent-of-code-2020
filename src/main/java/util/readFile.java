@@ -20,4 +20,25 @@ public abstract class readFile {
         }
         return map;
     }
+
+    public static List<String> readFileAsParagraphs(String fileName){
+        List<String> lines = new ArrayList<>();
+        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+            lines = stream.collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        List<String> paragraphs = new ArrayList<>();
+        StringBuilder helper = new StringBuilder();
+        for (String x : lines) {
+            if (!x.isEmpty()) {
+                helper.append(" ").append(x);
+            } else {
+                paragraphs.add(helper.toString().trim());
+                helper = new StringBuilder();
+            }
+        }
+        paragraphs.add(helper.toString().trim());
+        return paragraphs;
+    }
 }

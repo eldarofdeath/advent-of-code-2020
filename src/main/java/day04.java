@@ -1,33 +1,12 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import util.readFile;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 abstract class day04 {
     static void run() {
         String fileName = "src/main/resources/day4.txt";
-        List<String> map = new ArrayList<>();
-
-        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            map = stream.collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        List<String> passports = new ArrayList<>();
-        StringBuilder helper = new StringBuilder();
-        for (String x : map) {
-            if (!x.isEmpty()) {
-                helper.append(" ").append(x);
-            } else {
-                passports.add(helper.toString().trim());
-                helper = new StringBuilder();
-            }
-        }
-        passports.add(helper.toString().trim());
+        List<String> passports = readFile.readFileAsParagraphs(fileName);
         long validPassports = passports.stream().filter(pas -> pas.contains("byr") && pas.contains("iyr")
                 && pas.contains("eyr") && pas.contains("hgt")
                 && pas.contains("hcl") && pas.contains("ecl") && pas.contains("pid")).count();
